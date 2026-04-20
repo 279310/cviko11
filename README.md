@@ -1,2 +1,4 @@
 # cviko11
-cviko11 z prg
+main.py - testovanie sorting.py
+sorting.py - rôzne sorty
+hodnoceni_studentu.py - ukážka metód v OOP na príklade výsledkov žiakov
