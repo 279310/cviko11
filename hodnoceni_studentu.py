@@ -15,6 +15,7 @@ def main():
 class StudentsGrades :
     def __init__(self, scores):
         self.scores = scores
+        self._sorted_scores = None
 
     def get_by_index(self, index):
         return self.scores[index]
@@ -76,4 +77,24 @@ class StudentsGrades :
     def __str__(self):
         return f"StudentsGrades: {self.count()} studentů, průměr {self.average():.1f}"
 
+    def find_sorted(self, num):
+        if self._sorted_scores is None:
+            self._sorted_scores = self.get_sorted()
+            print('sorting...')
+        sequence = self._sorted_scores
+        plus = 0
+        while len(sequence) > 0:
+            if num == sequence[int(len(sequence) / 2)]:
+                return int(len(sequence) / 2) + plus
+            elif num < sequence[int(len(sequence) / 2)]:
+                sequence = sequence[0:int(len(sequence) / 2)]
+            else:
+                plus += len(sequence[0:int(len(sequence) / 2) + 1:])
+                sequence = sequence[int(len(sequence) / 2) + 1::]
+        return None
 main()
+results = StudentsGrades([85, 42, 91, 67, 50, 73, 100, 38, 58])
+
+print(results.find_sorted(91))   # sorting…  → index 7
+print(results.find_sorted(50))   # → index 2 (už neřadí)
+print(results.find_sorted(77))   # → None  (77 tam není)
