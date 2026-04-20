@@ -27,5 +27,3 @@ def selection_sort(list):
 
 def random_numbers(count, low=0, high=100):
     return [random.randint(low, high) for _ in range(count)]
-
-print(bubble_sort(random_numbers(10)))
